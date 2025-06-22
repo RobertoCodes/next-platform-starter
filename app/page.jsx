@@ -1,67 +1,84 @@
-import Link from 'next/link';
-import { Card } from 'components/card';
-import { ContextAlert } from 'components/context-alert';
-import { Markdown } from 'components/markdown';
-import { RandomQuote } from 'components/random-quote';
-import { getNetlifyContext } from 'utils';
+"use client";
 
-const contextExplainer = `
-The card below is rendered on the server based on the value of \`process.env.CONTEXT\` 
-([docs](https://docs.netlify.com/configure-builds/environment-variables/#build-metadata)):
-`;
+import {
+  Box,
+  VStack,
+  Stack,
+  Heading,
+  Text,
+  Input,
+  Button,
+  Link,
+  Icon,
+  AspectRatio,
+} from "@chakra-ui/react";
+import { FiMail, FiDownload } from "react-icons/fi";
 
-const preDynamicContentExplainer = `
-The card content below is fetched by the client-side from \`/quotes/random\` (see file \`app/quotes/random/route.js\`) with a different quote shown on each page load:
-`;
+export default function HomePage() {
+  return (
+    <Box bg="gray.900" color="white" minH="100vh" px={4} py={16} textAlign="center">
+      <VStack spacing={16} align="center" maxW="3xl" mx="auto">
+        {/* Logo */}
+        <Heading size="2xl">
+          COLDBLOOD<span style={{ color: "#e53e3e" }}> INC.</span>
+        </Heading>
+        <Text fontSize="xl" maxW="lg">
+          An indie game studio working on our debut title, <strong>NEVERWAY</strong>.
+        </Text>
 
-const postDynamicContentExplainer = `
-On Netlify, Next.js Route Handlers are automatically deployed as [Serverless Functions](https://docs.netlify.com/functions/overview/).
-Alternatively, you can add Serverless Functions to any site regardless of framework, with acccess to the [full context data](https://docs.netlify.com/functions/api/).
+        {/* Newsletter */}
+        <Stack
+          as="form"
+          direction={{ base: "column", md: "row" }}
+          spacing={4}
+          w="100%"
+          maxW="md"
+        >
+          <Input
+            placeholder="Your email"
+            variant="filled"
+            bg="gray.800"
+            _placeholder={{ color: "gray.400" }}
+            required
+          />
+          <Button colorScheme="red" leftIcon={<Icon as={FiMail} />} type="submit">
+            Subscribe
+          </Button>
+        </Stack>
 
-And as always with dynamic content, beware of layout shifts & flicker! (here, we aren't...)
-`;
+        {/* Trailer */}
+        <Box w="100%" maxW="2xl">
+          <Heading size="lg" mb={4}>Watch the Trailer</Heading>
+          <AspectRatio ratio={16 / 9} borderRadius="md" overflow="hidden">
+            <iframe
+              title="NEVERWAY Trailer"
+              src="https://www.youtube.com/embed/YOUR_TRAILER_ID"
+              allowFullScreen
+            />
+          </AspectRatio>
+        </Box>
 
-const ctx = getNetlifyContext();
+        {/* Download Rules */}
+        <Box w="100%" maxW="md">
+          <Heading size="lg" mb={4}>Game Rules</Heading>
+          <Button
+            as="a"
+            href="/rules.pdf"
+            download
+            colorScheme="red"
+            leftIcon={<Icon as={FiDownload} />}
+            w="full"
+          >
+            Download Rules PDF
+          </Button>
+        </Box>
 
-export default function Page() {
-    return (
-        <div className="flex flex-col gap-12 sm:gap-16">
-            <section>
-                <ContextAlert className="mb-6" />
-                <h1 className="mb-4">Hack the Abyss</h1>
-                <p className="mb-6 text-lg">Get started with Next.js and Netlify in seconds.</p>
-                <Link href="https://docs.netlify.com/frameworks/next-js/overview/" className="btn btn-lg sm:min-w-64">
-                    Read the Docs
-                </Link>
-            </section>
-            {!!ctx && (
-                <section className="flex flex-col gap-4">
-                    <Markdown content={contextExplainer} />
-                    <RuntimeContextCard />
-                </section>
-            )}
-            <section className="flex flex-col gap-4">
-                <Markdown content={preDynamicContentExplainer} />
-                <RandomQuote />
-                <Markdown content={postDynamicContentExplainer} />
-            </section>
-        </div>
-    );
-}
-
-function RuntimeContextCard() {
-    const title = `Netlify Context: running in ${ctx} mode.`;
-    if (ctx === 'dev') {
-        return (
-            <Card title={title}>
-                <p>Next.js will rebuild any page you navigate to, including static pages.</p>
-            </Card>
-        );
-    } else {
-        return (
-            <Card title={title}>
-                <p>This page was statically-generated at build time.</p>
-            </Card>
-        );
-    }
+        {/* Footer */}
+        <VStack spacing={2} mt={8} opacity={0.6} fontSize="sm">
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Text>&copy; {new Date().getFullYear()} Coldblood Inc.</Text>
+        </VStack>
+      </VStack>
+    </Box>
+  );
 }
