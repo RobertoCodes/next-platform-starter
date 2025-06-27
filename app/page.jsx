@@ -174,29 +174,6 @@ import {
 </Box>
 
 
-
-<Heading
-    size="lg"
-    mb={4}
-    color="white"
-    textShadow="0 0 8px #89cff0, 0 0 12px #89cff0"
-    textAlign="center"
-  >
-    Watch the Trailer
-  </Heading>
-
-          <Box w="100%" maxW="2xl" marginBottom={4}>
-          <AspectRatio
-    ratio={16 / 9}
-    border="2px solid #89cff0"
-    boxShadow="0 0 16px #89cff0"
-    borderRadius="md"
-    overflow="hidden"
-  >
-
-              <iframe title="Hack The Abyss Trailer" src="https://www.youtube.com/embed/_tUBCmGBO3A?si=V0GLPf8VkCnSvonL" allowFullScreen />
-            </AspectRatio>
-          </Box>
           <Box w="100%" maxW="md">
           <Heading
     size="lg"
@@ -220,6 +197,7 @@ import {
   >
     Reviews
   </Heading>
+  </Box>
 
   {/* Horizontal scroll */}
   <Box
@@ -230,9 +208,9 @@ import {
   >
     <Stack direction="row" spacing={6} w="auto">
       {[
-        { name: "James Speaker", text: "Hack The Abyss is fun for the whole family.", rating: 5 },
-        { name: "Wendy Lemons", text: "Easy to learn and pick up. Quite fun.", rating: 4 },
-        { name: "Leon Rogers", text: "Perfect blend of luck and sabotage ", rating: 5 },
+        { name: "Rob R", text: "Hack The Abyss is fast-paced enough to keep anyone's attention", rating: 5 },
+        { name: "Hans W", text: "While the gameplay is great, the visuals of the game are arguably even better. You can tell that a lot of effort was put into every piece.", rating: 4},
+        { name: "Wen T", text: "A great blend of luck and sabotage ", rating: 5 },
       ].map((review, index) => (
         <Box
   key={index}
@@ -258,85 +236,10 @@ import {
 
       ))}
     </Stack>
+    
   </Box>
-</Box>
-{/* Meet the Team */}
-<Box w="100%" maxW="3xl" margin={"auto"}>
-<Heading
-    size="lg"
-    mb={4}
-    color="white"
-    textShadow="0 0 8px #89cff0, 0 0 12px #89cff0"
-    textAlign="center"
-  >
-    Meet the team
-  </Heading>
+  
 
-  <Stack
-    direction={{ base: "column", md: "row" }}
-    spacing={6}
-    flexWrap="wrap"
-    align={"center"}
-    justify="center"
-  >
-    {[
-      {
-        name: "Alice 'Nightshade' Doe",
-        role: "Lead Developer",
-        bio: "Alice is a cybersecurity expert turned game developer. She's legit.",
-        img: "/team/alice.png",
-      },
-      {
-        name: "Bob 'Cipher' Smith",
-        role: "Narrative Designer",
-        bio: "Bob loves telling dark, twisty stories that keep players on the edge of their seat.",
-        img: "/team/bob.png",
-      },
-      {
-        name: "Eve 'Glitch' Lee",
-        role: "Artist",
-        bio: "Eve designs all the neon-soaked art, making sure every pixel glows just right.",
-        img: "/team/eve.png",
-      },
-    ].map((member, index) => (
-      <Box
-        key={index}
-        flexShrink={0}
-        w="250px"
-        border="1px solid"
-        borderColor="green.500"
-        borderRadius="md"
-        p={4}
-        bg="rgba(0,0,0,0.7)"
-        textAlign="center"
-        color="green.300"
-        transition="transform 0.2s"
-        _hover={{ transform: "scale(1.05)", borderColor: "red.500", boxShadow: "0 0 10px #ff0000" }}
-      >
-        <Box
-          as="img"
-          src={'pika.png'}
-          alt={member.name}
-          borderRadius="full"
-          boxSize="100px"
-          mx="auto"
-          mb={3}
-          objectFit="cover"
-          border="2px solid"
-          borderColor="green.500"
-        />
-        <Text fontWeight="bold" color="green.200">{member.name}</Text>
-        <Text fontSize="sm" color="green.400">{member.role}</Text>
-        <Text mt={2} fontSize="sm" color="green.300">{member.bio}</Text>
-      </Box>
-    ))}
-  </Stack>
-</Box>
-
-          <VStack spacing={2} mt={8} opacity={0.8} fontSize="sm">
-            <Text>&copy; {new Date().getFullYear()} HighTechHigh Inc.</Text>
           </VStack>
-        </VStack>
-      </Box>
-    );
-  }
+
+</Box>)}
