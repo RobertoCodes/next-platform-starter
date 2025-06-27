@@ -7,8 +7,8 @@ import {
     Heading,
     Text,
     Button,
+    Flex,
     Icon,
-    AspectRatio,
   } from "@chakra-ui/react";
   import { FiMail, FiDownload } from "react-icons/fi";
   import { useEffect, useState, useRef } from "react";
@@ -198,48 +198,144 @@ import {
     Reviews
   </Heading>
   </Box>
-
+  <ReviewCarousel/>
+{/* 
   {/* Horizontal scroll */}
-  <Box
-    overflowX="auto"
-    whiteSpace="nowrap"
-    pb={4}
-    css={{ scrollbarWidth: "thin" }}
-  >
-    <Stack direction="row" spacing={6} w="auto">
-      {[
-        { name: "Rob R", text: "Hack The Abyss is fast-paced enough to keep anyone's attention", rating: 5 },
-        { name: "Hans W", text: "While the gameplay is great, the visuals of the game are arguably even better. You can tell that a lot of effort was put into every piece.", rating: 4},
-        { name: "Wen T", text: "A great blend of luck and sabotage ", rating: 5 },
-      ].map((review, index) => (
-        <Box
-  key={index}
-  flexShrink={0}             // prevent shrinking
-  w="250px"                  // fixed width per review
-  border="1px solid"
-  borderColor="green.500"
-  borderRadius="md"
-  p={4}
-  bg="rgba(0,0,0,0.7)"
-  textAlign="left"
-  color="green.300"
-  transition="transform 0.2s"
-  whiteSpace="normal"        // allow wrapping
+  {/* <Box
+  overflowX="auto"
+  overflowY="hidden"
+  whiteSpace="nowrap"
+  pb={4}
+  px={2}
+  css={{
+    scrollbarWidth: "thin",
+    WebkitOverflowScrolling: "touch", // smooth scroll on mobile
+  }}
 >
-  <Text fontSize="sm" mb={2}>{review.text}</Text>
-  <Box mt={2} fontSize="sm" opacity={0.8}>— {review.name}</Box>
-  <Box mt={2} color="red.500">
-    {"★".repeat(review.rating)}
-    {"☆".repeat(5 - review.rating)}
-  </Box>
-</Box>
+  <Stack
+    direction="row"
+    spacing={6}
+    w="max-content" // ensures it fits content, not parent width
+  >
+    {[
+      {
+        name: "Rob R",
+        text: "Hack The Abyss is fast-paced enough to keep anyone's attention",
+        rating: 5,
+      },
+      {
+        name: "Hans W",
+        text: "While the gameplay is great, the visuals of the game are arguably even better. You can tell that a lot of effort was put into every piece.",
+        rating: 4,
+      },
+      {
+        name: "Wen T",
+        text: "A great blend of luck and sabotage.",
+        rating: 5,
+      },
+    ].map((review, index) => (
+      <Box
+        key={index}
+        flexShrink={0} // don’t shrink in row layout
+        w="250px"
+        border="1px solid"
+        borderColor="green.500"
+        borderRadius="md"
+        p={4}
+        bg="rgba(0,0,0,0.7)"
+        textAlign="left"
+        color="green.300"
+        whiteSpace="normal" // allow text wrapping
+      >
+        <Text fontSize="sm" mb={2}>
+          {review.text}
+        </Text>
+        <Box mt={2} fontSize="sm" opacity={0.8}>
+          — {review.name}
+        </Box>
+        <Box mt={2} color="red.500">
+          {"★".repeat(review.rating)}
+          {"☆".repeat(5 - review.rating)}
+        </Box>
+      </Box>
+    ))}
+  </Stack>
+</Box> */}
 
-      ))}
-    </Stack>
-    
-  </Box>
   
 
           </VStack>
 
 </Box>)}
+
+
+const reviews = [
+  {
+    name: "Rob R",
+    text: "Hack The Abyss is fast-paced enough to keep anyone's attention",
+    rating: 5,
+  },
+  {
+    name: "Hans W",
+    text: "While the gameplay is great, the visuals of the game are arguably even better. You can tell that a lot of effort was put into every piece.",
+    rating: 4,
+  },
+  {
+    name: "Wen T",
+    text: "A great blend of luck and sabotage.",
+    rating: 5,
+  },
+];
+
+
+const ReviewCarousel = () => {
+
+  return (
+    <Box w="100%" overflowX="auto" pb={4}>
+      <Stack direction="row" spacing={4} minW="max-content">
+        {reviews.map((review) => (
+           <Box
+           flexShrink={0} // don’t shrink in row layout
+           w="250px"
+           border="1px solid"
+           borderColor="green.500"
+           borderRadius="md"
+           key={review.name}
+           p={4}
+           bg="rgba(0,0,0,0.7)"
+           textAlign="left"
+           color="green.300"
+           whiteSpace="normal" // allow text wrapping
+         >
+           <Text fontSize="sm" mb={2}>
+             {review.text}
+           </Text>
+           <Box mt={2} fontSize="sm" opacity={0.8}>
+             — {review.name}
+           </Box>
+           <Box mt={2} color="red.500">
+             {"★".repeat(review.rating)}
+             {"☆".repeat(5 - review.rating)}
+           </Box>
+         </Box>
+          // <Box
+          //   key={idx}
+          //   flex="0 0 auto"
+          //   w={{ base: '250px', md: '300px' }}
+          //   bg={"red"}
+          //   p={4}
+          //   rounded="xl"
+          //   shadow="md"
+          // >
+          //   <Flex direction="column" h="100%">
+          //     <Heading size="sm" mb={2}>
+          //       {review.name}
+          //     </Heading>
+          //     <Text fontSize="sm">{review.text}</Text>
+          //   </Flex>
+          // </Box>
+        ))}
+      </Stack>
+    </Box>
+  );
+};
