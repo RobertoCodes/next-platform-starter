@@ -185,7 +185,9 @@ import {
     Game Rules
   </Heading>
 
-            <Button bg="#fa4f4d" as="a" href="/new_rules.pdf" download colorScheme="red" leftIcon={<Icon as={FiDownload} />} w="full">Download Rules</Button>
+            <Button bg="#fa4f4d" as="a" download locale={false} href="/test_save.pdf"     target="_blank"
+    rel="noopener noreferrer"
+ colorScheme="red" leftIcon={<Icon as={FiDownload} />} w="full">Download Rules</Button>
           </Box>
           <Box w="100%" maxW="3xl">
           <Heading
